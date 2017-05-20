@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>眠眠</title>
+    <script>
+        document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        document.documentElement.style.height = innerHeight + "px";
+        onresize = function() {
+            document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        };
+    </script>
+    <script src="./mianmian/js/jquery-3.0.0.min.js" charset="utf-8"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: -webkit-linear-gradient(#FF606C, #FF8978);
+            /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(#FF606C, #FF8978);
+            /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(#FF606C, #FF8978);
+            /* Firefox 3.6 - 15 */
+            background: linear-gradient(#FF606C, #FF8978);
+            /* 标准的语法 */
+        }
+
+        .biggif {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .imgbox {
+            width: 12.8rem;
+            height: 12.8rem;
+            margin: 0 auto;
+            position: relative;
+            top: 6.1rem;
+        }
+
+        .imgbox .img {
+            width: 100%;
+            position: absolute;
+            display: block;
+        }
+
+        .logo {
+            display: block;
+            width: 7.25rem;
+            height: 2.25rem;
+            position: absolute;
+            z-index: 2;
+            left: 3.2rem;
+            top: 5.2rem;
+        }
+
+        .fabu,
+        .qidai {
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            top: 5.6rem;
+            left: 0.3rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            font-family: PingFangSC-Regular, sans-serif;
+            color: #FF676E;
+        }
+
+        .email {
+            display: block;
+            width: 7.5rem;
+            position: absolute;
+            left: 6rem;
+            bottom: 2.5rem
+        }
+
+        .biggif,
+        .email,
+        .fabu,
+        .logo,
+        .qidai {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="biggif" src="./mianmian/img/logo1.gif" alt="">
+    <!-- <div class="imgbox">
+
+    </div> -->
+    <div class="imgbox">
+        <img class="logo" src="./mianmian/img/眠眠logo.png" alt="">
+        <div class="fabu">
+            五月发布
+        </div>
+        <div class="qidai">
+            敬请期待
+        </div>
+        <!-- <img class="img" src="./mianmian/img/mianmian3.gif" alt=""> -->
+    </div>
+    <img class="email" src="./mianmian/img/email.png" alt="">
+</body>
+<script type="text/javascript">
+    $(function() {
+        $(".biggif").fadeIn(1000)
+        $(".logo").fadeIn(1000).delay(500).fadeOut(2000)
+        setTimeout(function() {
+            $(".fabu").fadeIn(1000).delay(500).fadeOut(2000)
+        }, 3500)
+        setTimeout(function() {
+            $(".qidai,.email").fadeIn(1000).delay(2000).fadeOut(2000)
+        }, 7000)
+        setInterval(function() {
+            $(".logo").fadeIn(1000).delay(500).fadeOut(2000)
+            setTimeout(function() {
+                $(".fabu").fadeIn(1000).delay(500).fadeOut(2000)
+            }, 3500)
+            setTimeout(function() {
+                $(".qidai,.email").fadeIn(1000).delay(2000).fadeOut(2000)
+            }, 7000)
+        }, 12000)
+    })
+</script>
+
+</html>

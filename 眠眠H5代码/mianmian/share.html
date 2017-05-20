@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>眠眠</title>
+    <script>
+        document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        onresize = function() {
+            document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        };
+        var locationurl=window.location.href
+        if(locationurl.indexOf("params")!=-1 && locationurl.indexOf("www.")==-1){
+            location.href="https://hopapapa.com/app/download.html"
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #ff6d70;
+        }
+        [v-cloak]{
+            display: none;
+        }
+        .box {
+            height: 100%;
+            font-size: 0.6rem;
+            padding: 0 0.6rem;
+        }
+
+        .video {
+            position: relative;
+            width: 17.5rem;
+            height: 10.2rem;
+            margin: 0.6rem auto;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .videoimg {
+            display: block;
+            margin-left: -10%;
+            margin-top: -10%;
+            width: 120%
+        }
+
+        .yuanjiao1 {
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+            top: 3.5rem;
+            left: 8rem;
+            z-index: 8;
+        }
+
+        .infoRow1,
+        .infoRow3 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .guanzhu {
+            letter-spacing: 3px;
+            width: 2.6rem;
+            height: 1.3rem;
+            background: #fff;
+            color: #ff6d70;
+            text-align: center;
+            line-height: 1.3rem;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            margin-bottom: 1.3rem;
+        }
+        .guanzhu:nth-child(2){
+            text-indent: 2px;
+        }
+
+        .agesex {
+            width: 5.5rem;
+            height: 1.5rem;
+            background: #fff;
+            color: #ff6d70;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            font-size: 0.6rem;
+            text-align: center;
+            line-height: 1.5rem;
+            position: relative;
+        }
+
+        .sex {
+            border: 1px solid #000000;
+            height: 36px;
+            width: 40px;
+            border-radius: 3px;
+            background: red;
+        }
+
+        .touxiang {
+            display: block;
+            width: 5.4rem;
+            height: 5.4rem;
+            border-radius: 5.4rem;
+            position: absolute;
+            top: 8.2rem;
+            left: 6.7rem;
+            z-index: 9
+        }
+
+        .username,
+        .address {
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 1.25rem;
+        }
+
+        .infoRow3 {
+            margin-top: 0.8rem;
+        }
+
+        .description {
+            background: #fff;
+            color: #ff6d70;
+            /*width: 100%;*/
+            border-radius: 5px;
+            margin-top: 0.6rem;
+            line-height: 0.9rem;
+            padding: 0.6rem 0.8rem;
+        }
+
+        .recomments {
+            overflow: hidden;
+            height: auto;
+            margin-top: 0.6rem;
+        }
+        .recommentsItem{
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .recomments_item {
+            width: 5.45rem;
+            height: 5.4rem;
+            overflow: hidden;
+            float: left;
+            margin-bottom: 0.6rem;
+            position: relative;
+            background-size: cover;
+        }
+
+        .recomments_item .itemimg {
+            width: 100%;
+        }
+
+        .yuanjiao {
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            position: absolute;
+            z-index: 3;
+            top: 2rem;
+            left: 2rem;
+        }
+
+        .ageimg {
+            float: left;
+            margin-left: 1.8rem;
+            margin-right: 0.2rem;
+            width: 0.65rem;
+            height: 0.75rem;
+            margin-top: 0.37rem;
+        }
+
+        .focusecount {
+            /*position: absolute;*/
+            float: left;
+            width: 1.3rem;
+            height: 1.3rem;
+            margin-top: 0.1rem;
+            /*top: 0.21rem;*/
+            margin-left: 1.4rem;
+        }
+
+        .huakuai {
+            width: 22.7%;
+            height: 0.5rem;
+            position: relative;
+            /*left: 25%;*/
+            top: -0.15rem;
+            border-radius: 1rem;
+            background: #ff6d70;
+        }
+
+        .line {
+            background: url("./img/user/profile_line.png");
+            background-size: contain;
+            width: 2.2rem;
+            height: 0.2rem;
+            margin: 0 auto;
+            margin-top: 0.7rem;
+            border-radius: 2rem;
+        }
+
+        .nan {
+            display: block;
+            width: 0.55rem;
+            height: 0.8rem;
+            position: absolute;
+            top: 0.4rem;
+        }
+
+        .nv {
+            display: block;
+            width: 0.5rem;
+            height: 0.8rem;
+            position: absolute;
+            top: 0.4rem;
+        }
+
+        .nan {
+            left: 1rem;
+        }
+
+        .nv {
+            right: 1rem;
+        }
+
+        .zuobiao {
+            width: 0.63rem;
+            height: 0.63rem;
+            vertical-align: center;
+            margin-bottom: -0.05rem;
+        }
+
+        .count {
+            float: left;
+            text-indent: 0.21rem;
+        }
+
+        .mask{
+            width: 100%;
+            height:100% ;
+            position: absolute;
+            top:0;
+            left: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9;
+        }
+        #recomments_box{
+            width: 100%;
+            height: 240px;
+            position: absolute;
+            top:50%;
+            left: 0;
+            margin-top: -120px;
+            z-index: 10;
+            background-size: contain;
+            background-color: black;
+        }
+        .islike{
+            position: relative;
+            left:4.15rem;
+            top: 4.25rem;
+            width: 1.05rem;
+            height: 0.87rem;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            background: url("./img/user/vu-placeholder@2x.png");
+            background-size: cover;
+            position: relative;
+
+        }
+        #banner{
+            /*position: absolute;*/
+            width:430px;
+            /*height:100%;*/
+            display: none;
+            /*left: 50%;*/
+            /*top: 50%;*/
+            /*margin-left: -8.75rem;*/
+            /*margin-top:-5.1rem ;*/
+            /*min-width: 100%;*/
+            /*min-height: 100%;*/
+            background-size: cover;
+            overflow: hidden;
+        }
+        #recommentsvideo{
+            width: 100%;
+            height: 100%;
+        }
+        #recommentsimg{
+            width: 100%;
+            height: 100%;
+        }
+
+        .IIV::-webkit-media-controls-play-button, .IIV::-webkit-media-controls-start-playback-button {
+            opacity: 0;
+            pointer-events: none;
+            width: .06667rem
+        }
+        .theme-default{
+            opacity:0;
+        }
+        .downloadgif{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .downloadgif img{
+            width: 100%;
+        }
+    </style>
+
+</head>
+<script src="./js/iphone-inline.js"></script>
+<!--<script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/vod/bcloud.js"></script>-->
+<script type="text/javascript" id="-moblink-js" src="//f.moblink.mob.com/moblink.js?appkey=1c34ba66224d4"></script>
+<script type="text/javascript" src="./js/vue.js"></script>
+<script type="text/javascript" src="./js/vue-resource.js"></script>
+
+<body>
+    <div class="box">
+        <div class="video">
+            <img class="yuanjiao1" src="./img/user/play_icon.png" @click="videoclick"  alt="" v-show="bannerplay">
+            <div id="player" :style="{backgroundImage:'url('+ bannerimg +')'}">
+                <video id="banner" class="IIV"
+                       webkit-playsinline="true" playsinline="true" x-webkit-airplay="true"
+                       @click="videoclick"  preload="auto"
+                       x5-video-player-type="h5" x5-video-player-fullscreen="true"
+                       @paused="videopaused"  @ended="videoend"></video>
+            </div>
+        </div>
+        <div class="userInfo">
+            <img class="touxiang" :src="user.portrait" v-show="user.portrait!=''">
+            <img class="touxiang" src='./img/user/nvtouxiang.png' v-show="user.portrait==''" alt="">
+            <div class="infoRow1">
+                <div class="guanzhu">私信</div>
+                <div class="guanzhu">+关注</div>
+            </div>
+            <div class="infoRow2">
+                <p class="username" v-text="user.name"></p>
+                <div class="address"><img class="zuobiao" src="./img/shizhong_03.png" alt="" v-cloak> {{newage}}</div>
+            </div>
+            <div class="infoRow3">
+                <div class="agesex">
+                    <img class="nan" src="./img/user/nan.png" alt="">
+                    <div class="line">
+                        <div class="huakuai" :style="{left:huakuai}"></div>
+                    </div>
+                    <img class="nv" src="./img/user/nv.png" alt="">
+                </div>
+                <div class="agesex"><img class="focusecount" src="./img/user/1hl.png" alt=""><span class="count" v-text="user.ext.view_count"></span></div>
+                <div class="agesex"><img class="ageimg" src="./img/man_08.png" alt=""><span class="count" v-text="user.ext.attention_count"></span></div>
+
+
+            </div>
+            <div class="description" v-text="user.ext.sign" v-show="user.ext.sign!=''">
+            </div>
+
+        </div>
+        <div class="recomments">
+            <div class="recomments_item" @click="recommentsclick(item)" v-for="item in recomments"  :class="{recommentsItem:checkitem(item,$index)}" :style="{backgroundImage:'url('+ (item.poster || item.url) +')'}">
+                <img class="yuanjiao" src="./img/user/play_icon.png" alt="" v-show="item.res_type==7">
+                <!--<img class="itemimg" :src="item.poster || item.url" alt="">-->
+                <img class="islike" src="./img/user/islike.png" alt="">
+            </div>
+        </div>
+
+        <div id="recomments_box" v-show="mask" v-cloak >
+            <img id="recommentsimg" :src="maskbg" alt="" v-show="reImg">
+            <video id="recommentsvideo" v-show="!reImg" autoplay></video>
+        </div>
+        <div class="mask" v-show="mask" @click="maskclick"></div>
+    </div>
+
+    <div class="downloadgif">
+        <img src="./img/download.gif" alt="">
+    </div>
+
+</body>
+<script type="text/javascript">
+    onresize();
+
+    var bannervideo =  document.getElementById("banner")
+    var recommentsvideo =  document.getElementById("recommentsvideo")
+//    var player = new CloudVodPlayer();
+    var vm = new Vue({
+        el: ".box",
+        created: function() {
+            this.user_id = this.getValue("user_id")
+            this.getData()
+            this.getTimeLine()
+        },
+        data: {
+            user_id: "",
+            authorization: "",
+            recomments:[],
+            mask:false,
+            maskbg:'',
+            reImg:false,
+            bannerplay:false,
+            bannerimg:"",
+            user: {
+                age: 33,
+                create_ts: 1490881721,
+                ext: {
+                    la: 39.915209,
+                    lng: 116.40349,
+                    location: "朝阳区 大望路",
+                    sign: ""
+                },
+                gender: 0.4,
+                name: "",
+                portrait: "",
+            }
+        },
+        methods: {
+            getData: function () {
+                this.$http({
+                    method: "JSONP",
+                    type: "GET",
+                    data: {
+                        user_id: this.user_id
+                    },
+                    url: "http://47.93.49.236:8000/api/v1/user/detail",
+                }).then(function (data) {
+                    console.log(data.data.data)
+                    vm.$set('user', data.data.data)
+                    this.bannerimg=data.data.data.banner.poster
+                    if (this.user.banner.url != '') {
+                        this.bannerplay=true
+                        bannervideo.setAttribute("src", this.user.banner.url)
+                    }
+                }, function (response) {
+                    console.log('失败')
+                    console.log(response)
+                })
+            },
+            getTimeLine: function () {
+                this.$http({
+                    method: "JSONP",
+                    ytpe: "get",
+                    data: {
+                        user_id: this.user_id
+                    },
+                    url: 'http://47.93.49.236:8000/api/v1/user/timeline'
+                }).then(function (res) {
+                    console.log(res.data.data)
+                    vm.$set('recomments', res.data.data)
+                })
+            },
+            videoend:function () {
+                this.bannerplay=true
+                bannervideo.style.display='none'
+
+            },
+            videopaused:function () {
+                this.bannerplay=true
+                bannervideo.style.display='none'
+            },
+            getValue: function (key) {
+                var name = key;
+                var str = window.location.search;
+                if (str.indexOf(name) != -1) {
+                    var pos_start = str.indexOf(name) + name.length + 1;
+                    var pos_end = str.indexOf("&", pos_start);
+                    if (pos_end == -1) {
+                        return decodeURIComponent(str.substring(pos_start))
+                    } else {
+                        return decodeURIComponent(str.substring(pos_start, pos_end))
+                    }
+                }
+            },
+            videoclick: function () {
+
+                if (this.bannerplay){
+                    bannervideo.style.display='block'
+                    this.bannerplay=false
+                    bannervideo.play()
+                }else{
+//                    bannervideo.style.display='none'
+                    this.bannerplay=true
+                    bannervideo.pause()
+                }
+//                this.bannerplay=!this.bannerplay
+            },
+            recommentsclick:function (item) {
+                this.mask=true
+                this.reImg = false
+                this.maskbg=''
+                document.body.scrollTop=0
+                document.body.style.overflow="hidden"
+
+
+                console.log(item)
+                if(item.res_type==4){
+                    this.reImg = true
+                    this.maskbg=item.url
+                }else if(item.res_type==7){
+
+                    recommentsvideo.setAttribute("src",item.url)
+                }
+                player.sdk.pauseVideo();
+
+            },
+            maskclick:function () {
+                this.mask=!this.mask
+                document.body.style.overflow='scroll'
+            },
+            checkitem:function (item,index) {
+                console.log(index/3<0.34 && index/3>0.3)
+                var res = index/3 +''
+                res = res.split(".")[1]
+                res = "0."+res
+                if(res<0.34 && res>0.3){
+                    return true
+                }else {
+                    return false
+                }
+            }
+        },
+        computed: {
+            huakuai: function() {
+                if(this.user.gender==1){
+                    return (this.user.gender-0.15) * 100 + "%"
+                }else {
+                    return this.user.gender * 100 + "%"
+                }
+            },
+            newage: function() {
+                newage = 2017 - this.user.age + "s"
+                return newage
+            }
+        }
+    })
+    setTimeout(function() {
+        MobLink.init();
+    }, 1000)
+</script>
+
+</html>
+
+</html>

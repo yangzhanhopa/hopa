@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>mianmian</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="./js/jquery-1.10.2.min.js" charset="utf-8"></script>
+    <script>
+        document.documentElement.style.fontSize = (innerWidth / 750) * 20 + "px";
+        onresize = function () {
+            $("body").css(
+                'width', '100%'
+            )
+            $("#box").css("widtn","100%")
+        };
+    </script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body,html{
+        width: 100%;
+    }
+    #box{
+        width: 100%;
+    }
+    img{
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+<script type="text/javascript">
+    onresize();
+    var pauseMedia = function () {
+        $(".video_iframe").each(function (index,ele) {
+            $("#audioiframe")[0].contentWindow.audiopause()
+            $("#videoiframe")[0].contentWindow.pauseVideo()
+        })
+    }
+    var resumeMedia = function () {
+        $(".video_iframe").each(function (ele,index) {
+            $("#audioiframe")[0].contentWindow.audioplay()
+            $("#videoiframe")[0].contentWindow.resumevideo()
+        })
+    }
+    function getValue(key) {
+        var name = key;
+        var str = window.location.search;
+        if (str.indexOf(name) != -1) {
+            var pos_start = str.indexOf(name) + name.length + 1;
+            var pos_end = str.indexOf("&", pos_start);
+            if (pos_end == -1) {
+                return decodeURIComponent(str.substring(pos_start))
+            } else {
+                return decodeURIComponent(str.substring(pos_start, pos_end))
+            }
+        }
+    };
+    var id = getValue("id")
+
+
+    $.ajax({
+        url: "http://47.93.49.236:8000/api/v1/article/" + id,
+        type: "GET",
+        contentType: "application/json",
+        dataType: "jsonp",
+        success: function(data) {
+            console.log(data)
+            var content = data.data.content
+            $("#box").css("width",innerWidth+"px")
+            $("#box").html(content)
+            $(".video_iframe").css(
+                'width', '100%'
+            )
+            $("section p").css("width","100%")
+            $("section img").css("width","100%")
+            $("section iframe").css("width","100%")
+            $(".video_iframe").each(function (index,ele) {
+                console.log(ele)
+                if($(ele).attr('src').indexOf('le_audio')!=-1){
+                    $(ele).attr("id","audioiframe")
+                    $("#audioiframe").css('height','48px')
+                    $("#audio").contents().find("#audioimg")
+                    console.log( $("#audio").contents().find("#audioimg"))
+                }
+                if($(ele).attr('src').indexOf('le_video')!=-1){
+                    $(ele).attr("id","videoiframe")
+                    $(ele).attr("name","videoiframe")
+                }
+
+            })
+        },
+        error: function(data) {
+            console.log(data)
+        }
+    })
+</script>
+
+</html>

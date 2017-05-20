@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=divice-width,initial-scale=1.0,minmum-scale=1.0,maxmum-scale=1.0,user-scalable=no">
+    <title>眠眠</title>
+    <script type="text/javascript">
+        document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        onresize = function() {
+            document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        }
+        var locationurl=window.location.href
+        if(locationurl.indexOf("params")!=-1 && locationurl.indexOf("www.")==-1){
+            location.href="https://hopapapa.com/app/download.html"
+        }
+    </script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #ff6970;
+        font-size: 0.6rem;
+    }
+
+
+    #player {
+        width: 17.5rem;
+        height: 10.2rem;
+        margin: 0.6rem auto;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .html {
+        width: 17.5rem;
+        margin: 0.6rem auto;
+        border-radius: 5px;
+    }
+
+    .videoimg {
+        display: block;
+        margin-left: -10%;
+        margin-top: -10%;
+        width: 120%
+    }
+
+    .yuanjiao1 {
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        top: 4.5rem;
+        left: 8.5rem;
+        z-index: 9;
+    }
+
+    .box {
+        padding: 0 0.6rem;
+
+        /*width: 100%*/
+    }
+
+    .countlist {
+        width: 100%;
+        display: flex;
+        display: -webkit-flex;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        margin-top: 0.75rem
+    }
+
+    .countlist p {
+        display: inline-block;
+        line-height: 1.7rem;
+        position: absolute;
+        text-indent: 0.2rem;
+        top: 0;
+        left: 2rem;
+    }
+
+    .countlist img {
+        float: left;
+        margin-left: 0.55rem;
+        margin-top: 0.1rem
+    }
+
+    .watchcount,
+    .commentcount,
+    .zancount {
+        background: #fff;
+        color: #ff6970;
+        width: 4.8rem;
+        height: 1.7rem;
+        line-height: 1.7rem;
+        text-align: center;
+        border-radius: 0.25rem;
+        position: relative;
+    }
+
+    .watchcount>p,
+    .commentcount>p,
+    .zancount>p {
+        width: 40%;
+        text-align: center;
+    }
+
+    .description {
+        padding: 0.9rem;
+        background: #fff;
+        border-radius: 0.3rem;
+        line-height: 0.9rem;
+        margin-top: 0.6rem;
+        color: #ff6970;
+    }
+
+    .likeuser>p {
+        color: #fff;
+        margin: 0.6rem 0;
+    }
+
+    .userlist {
+        border-radius: 0.3rem;
+        background: #fff;
+        overflow: hidden;
+        padding: 0.5rem 0;
+    }
+
+    .commentlist>p {
+        color: #fff;
+        margin: 0.6rem 0;
+    }
+
+    .commentitem {
+        background: #fff;
+        padding: 0.5rem 0.85rem 0.5rem 0.6rem;
+        border-radius: 0.3rem;
+        color: #ff6970;
+        margin-bottom: 0.625rem;
+    }
+
+    .commentTitle {
+        overflow: hidden;
+        height: auto;
+    }
+
+    .userAvatar {
+        width: 1rem;
+        height: 1rem;
+        float: left;
+        margin-right: 0.4rem;
+        border-radius:100px ;
+        overflow: hidden;
+    }
+
+    .userAvatar>img {
+        width: 100%
+    }
+
+    .userName {
+        float: left;
+        font-weight: bold;
+        font-size: 0.7rem;
+        font-weight: bold;
+    }
+    .commentName{
+        font-weight: bold;
+    }
+    .commentTime {
+        font-size: 0.5rem;
+        float: right;
+        color: #fdc5ca
+    }
+
+    .commentbody {
+        padding-left: 1.415rem;
+        line-height: 1rem;
+        font-size: 0.7rem;
+    }
+
+    .recomment>p {
+        color: #fff;
+        margin: 0.6rem 0;
+    }
+
+    .recomment_itemeven {
+        margin-left: 0.3rem;
+    }
+
+    .recomment_item {
+        color: #fff;
+        float: left;
+        overflow: hidden;
+    }
+
+
+    .recomment_video {
+        width: 8.6rem;
+        height: 5.1rem;
+        overflow: hidden;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    .recomment_video .res_poster {
+        width: 100%;
+    }
+
+    .recomments_name {
+        margin: 0.6rem 0;
+    }
+
+    .dianzanicon {
+        width: 1.175rem;
+    }
+
+    .pinglunicon {
+        width: 1.2rem
+    }
+
+    .guankanicon {
+        width: 1.425rem;
+    }
+
+    .user {
+        width: 1.725rem;
+        height: 1.725rem;
+        display: block;
+        float: left;
+        margin-left: 0.5rem;
+        border-radius: 10rem;
+    }
+
+    .play_icon {
+        position: absolute;
+        width: 1rem;
+        height: 1.13rem;
+        top: 2.2rem;
+        left: 3.6rem;
+    }
+    .html{
+        width: 100%;
+        background: #fff;
+    }
+    .theme-default{
+        opacity:0;
+    }
+    .downloadgif{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+    .downloadgif img{
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <!-- <img class="yuanjiao1" src="./img/user/play_icon.png" id="play_icon" alt=""> -->
+        <div id="player" style="background:#5e5e5e" v-show="this.res_type==7">
+        </div>
+        <div class="html" v-show="this.res_type==6">
+        </div>
+        <div class="data">
+
+        </div>
+        <div class="countlist">
+            <div class="watchcount">
+                <img class="guankanicon" src="./img/user/guankan_03.gif" alt="">
+                <p v-text="user.ext.view_count"> </p>
+            </div>
+            <div class="commentcount">
+                <img class="pinglunicon" src="./img/user/pinglun_03.gif" alt="">
+                <p v-text="user.ext.comment_count"></p>
+            </div>
+            <div class="zancount">
+                <img class="dianzanicon" src="./img/user/dianzan.png" alt="">
+                <p v-text="user.ext.like_count"></p>
+            </div>
+        </div>
+        <div class="description" v-show="user.description!=''" v-text="user.description">
+        </div>
+        <!--<div class="likeuser">-->
+            <!--<p>感兴趣的用户</p>-->
+            <!--<div class="userlist">-->
+                <!--<img src="./img/user/1.png" class="user" alt="">-->
+                <!--<img src="./img/user/2.png" class="user" alt="">-->
+                <!--<img src="./img/user/3.png" class="user" alt="">-->
+                <!--<img src="./img/user/4.png" class="user" alt="">-->
+                <!--<img src="./img/user/5.png" class="user" alt="">-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="commentlist" v-show="user.comments.length>0">
+            <p>评论</p>
+            <div class="commentitem" v-for="elem in newcomments" :key="elem.$index">
+                <div class="commentTitle">
+                    <div class="userAvatar">
+                        <img :src="elem.from_user.portrait" onerror="this.src='./img/user/nvtouxiang.png'" alt="">
+                    </div>
+                    <div class="userName" v-text="elem.from_user.name">
+                    </div>
+                    <div class="commentTime">
+                        <span v-text="elem.create_ts"></span>
+                    </div>
+                </div>
+                <div class="commentbody">
+                    <p v-text="elem.content"></p>
+                </div>
+                <div class="commentbody" v-for="rep in elem.replys" :key="rep.$index">
+                    <span v-text="rep.from_user.name" class="commentName"></span> 回复 <span v-text="rep.to_user.name" class="commentName"></span> ： <span v-text="rep.content"></span>
+                </div>
+            </div>
+        </div>
+        <div class="recomment" v-show="user.related_items.length>0">
+            <p>相关</p>
+            <div class="recomment_item" v-for="elem in user.related_items" :key="elem.$index" :class="{recomment_itemeven:$index%2==1}" @click="relatedclick(elem)">
+                <div class="recomment_video" style="background: #ff6970 ">
+                    <img v-show="elem.res_type==7" class="play_icon" src="./img/user/play_icon.png" alt="">
+                    <img :src="elem.poster" onerror="this.src='./img/user/vu-placeholder@2x.png'" class="res_poster" alt="">
+                </div>
+                <div class="recomments_name" v-text="elem.name">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="downloadgif">
+        <img src="./img/download.gif" alt="">
+    </div>
+</body>
+<script type="text/javascript" src="./js/vue.js"></script>
+<script type="text/javascript" src="./js/vue-resource.js"></script>
+<!-- <script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/vod/bcloud.js"></script> -->
+<script src="./js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" id="-moblink-js" src="//f.moblink.mob.com/moblink.js?appkey=1c34ba66224d4"></script>
+
+<script type="text/javascript">
+    onresize();
+    MobLink.init();
+
+    function init_moblink() {
+        player = new CloudVodPlayer();
+        player.init({
+            uu: "n219pmijzi",
+            vu: vm.user.letv_video_unique,
+            pu: "caea07ae99",
+            autoplay: 0,
+            ark: "106",
+            playsinline: "1",
+            "gpcflag": 1
+        }, "player")
+    }
+
+    vm = new Vue({
+        el: ".box",
+        created: function() {
+            this.user_id = this.getValue("user_id")
+            this.res_id = this.getValue("res_id")
+            this.res_type = this.getValue("res_type")
+            this.aritcle = this.user.url
+            if (this.res_type == 7) {
+                this.getData()
+
+            } else if (this.res_type == 6) {
+                this.getData()
+                this.getAritcle()
+            } else if (this.res_type == 11) {
+
+            }
+            console.log(this.res_id)
+            console.log(this.res_type)
+        },
+        data: {
+            play_icon: true,
+            user_id: "",
+            res_type: "",
+            res_id: "",
+            aritcle_id: "",
+            user: {
+                age: 26,
+                attention_status: 91,
+                url: "asdfa/asdfasdf/asdfasdf/?id=A15891358342447106",
+                banner: {
+                    create_ts: 1491666629,
+                    description: null,
+                    letv_video_id: 42697947,
+                    letv_video_unique: "f5bf90583a",
+                    name: "",
+                    poster: "",
+                    res_id: 8727736998690816,
+                    res_type: 7,
+                    status: 72
+                },
+                create_ts: 1490881721,
+                ext: {
+                    lat: 39.915209,
+                    lng: 116.40349,
+                    location: "亦庄",
+                    sign: "我就是我，不一样的烟火"
+                },
+                gender: 0.4,
+                mobile: "18311233556",
+                name: "update_name",
+                opens: [],
+                portrait: "",
+                status: 52,
+                user_id: 56942160553
+            },
+            comments: [],
+            related_videos: [{
+                "create_ts": 1492098706,
+                "description": null,
+                "letv_video_id": 42697947,
+                "letv_video_unique": "f5bf90583a",
+                "name": "",
+                "poster": "",
+                "res_id": 12352263431389184,
+                "res_type": 7,
+                "status": 72
+            }],
+            discription: ""
+
+        },
+        methods: {
+            getData: function() {
+                document.cookie = "authorization=NTY5NDIxNjA1NTM7MTQ5MDIwMzM5Ng=="
+                this.$http({
+                    method: "JSONP",
+                    type: "GET",
+                    data: {
+                        res_id: this.res_id,
+                        res_type: this.res_type
+                    },
+                    url: "http://47.93.49.236:8000/api/v1/resource/detail",
+                }).then(function(data){
+                    console.log(data.data)
+                    this.$set('user', data.data.data)
+//                    var tag = document.createElement('script');
+//                    tag.src = "http://yuntv.letv.com/player/vod/bcloud.js"
+//                    tag.setAttribute("id", "-moblink-js")
+//                    tag.setAttribute("onload", "init_moblink()")
+//                    document.getElementsByTagName('body')[0].appendChild(tag)
+
+                }, function(response){
+                    console.log('失败')
+                    console.log(response)
+                })
+            },
+            getAritcle: function() {
+                console.log(this.aritcle_id)
+                this.$http({
+                    method: "JSONP",
+                    type: "GET",
+                    url: "http://47.93.49.236:8000/api/v1/article/" + this.res_id,
+                }).then(function(data){
+                    document.getElementsByClassName("html")[0].innerHTML=data.data.data.content
+                    $("section p").css("width","100%")
+                    $("section img").css("width","100%")
+                    $("section iframe").css("width","100%")
+                    $(".video_iframe").each(function (index,ele) {
+                        if($(this).attr('src').indexOf('le_audio')!=-1){
+                            $(ele).attr("id","audioiframe")
+                            $("#audioiframe").css('height','48px')
+                        }
+
+                    })
+
+
+                }, function (response) {
+                    console.log('失败')
+                    console.log(response)
+                })
+            },
+            play_video: function() {
+                if (this.play_icon) {
+                    // document.getElementById('play_icon').style.display = 'none'
+                    player.sdk.resumeVideo()
+
+                } else {
+                    player.sdk.pauseVideo()
+                    // document.getElementById('play_icon').style.display = 'block'
+                }
+                this.play_icon = !this.play_icon
+
+            },
+            relatedclick:function (elem) {
+                url=location.href.split("?")[0]
+                location.href= url+"?res_id="+elem.res_id+"&res_type="+elem.res_type
+
+            },
+            getValue: function(key) {
+                var name = key;
+                var str = window.location.search;
+                if (str.indexOf(name) != -1) {
+                    var pos_start = str.indexOf(name) + name.length + 1;
+                    var pos_end = str.indexOf("&", pos_start);
+                    if (pos_end == -1) {
+                        return decodeURIComponent(str.substring(pos_start))
+                    } else {
+                        return decodeURIComponent(str.substring(pos_start, pos_end))
+                    }
+                }
+            }
+
+        },
+        computed: {
+            huakuai: function() {
+                return this.user.gender * 100 + "%"
+            },
+            newcomments: function() {
+                newcomments = this.user.comments
+                var nowtime = new Date().getTime()
+                if(newcomments.length>6){
+                    len=6
+                }else{
+                    len=newcomments.length
+                }
+                for(var i=0;i<len;i++ ){
+
+                    var time = newcomments[i].create_ts*1000
+                    var commenttiem = (nowtime-time)/1000
+                    lasttime = new Date( time )
+                    if(commenttiem<60){
+                        newcomments[i].create_ts=lasttime.getSeconds()+"秒前"
+                    }
+                    if(60<commenttiem && commenttiem<3600){
+                        newcomments[i].create_ts=lasttime.getMinutes()+"分钟前"
+                    }
+                    if(3600<commenttiem && commenttiem<216000){
+                        newcomments[i].create_ts=lasttime.getHours()+"小时前"
+                    }
+                    if(216000<commenttiem){
+                        newcomments[i].create_ts=(lasttime.getMonth() + 1) + "月" + lasttime.getDate() + "日 "
+                    }
+                }
+                return newcomments
+            }
+
+        }
+    })
+
+</script>
+
+</html>

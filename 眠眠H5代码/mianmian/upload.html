@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>眠眠发布器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #box {
+            width: 80%;
+            height: 100%;
+            overflow: scroll;
+            border: 1px solid #5e5e5e;
+            float: left;
+        }
+
+        #btn {
+            float: left;
+            width: 80px;
+            height: 30px;
+            background: #fb615e;
+            border: none;
+            margin-left: 20px;
+            margin-top: 40px;
+        }
+
+        .success {
+            width: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+            display: none;
+            background: #fdc5ca;
+            border: 1px solid #5e5e5e;
+        }
+
+        .msg {
+            width: 100%;
+
+        }
+
+        .ok {
+            width: 50px;
+            margin: 0 auto;
+            background: dodgerblue;
+            margin-left: 200px;
+        }
+
+        .name {
+            border: 1px solid #5e5e5e;
+        }
+    </style>
+</head>
+<script src="./js/jquery-3.0.0.min.js"></script>
+<body>
+标题：<input type="text" class="name" width="400px">
+<textarea id="box" ></textarea>
+<button id="btn">发布</button>
+<div class="success">
+    <div class="msg"></div>
+    <button class="ok">确定</button>
+</div>
+
+</body>
+<script>
+    var btn = document.getElementById("btn");
+    var box = document.getElementById("box")
+    btn.onclick = function () {
+        $.ajax({
+            url: "http://47.93.49.236:8000/admin/v1/article/create",
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
+            data: {
+                'name': $('.name').val(),
+                'content': $('#box').val(),
+            },
+            success: function (data) {
+                console.log(data);
+                $(".msg").html('生成的页面地址<br/><a target=_blank href="http://www.hopapapa.com/fabu/news.html?id=' + data.data.article_id + '">http://www.hopapapa.com/fabu/news.html?id=' + data.data.article_id + '</a>');
+                $(".success").show()
+                $(".ok").click(function () {
+                    $(".success").hide()
+                })
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        })
+    }
+</script>
+</html>

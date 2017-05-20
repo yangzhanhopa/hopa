@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>眠眠详情发布编辑器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="./css/default.css" />
+    <link rel="stylesheet" type="text/css" href="./css/util.css" />
+    <!--<link rel="stylesheet" type="text/css" href="./css/preview.css">-->
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.popline.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.link.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.blockquote.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.decoration.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.list.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.justify.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.blockformat.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.social.js"></script>
+    <script type="text/javascript" src="./js/plugins/jquery.popline.backcolor.js"></script>
+    <script type="text/javascript" src="./js/videoUpload.js"></script>
+    <script type="text/javascript" src="./js/audioUpload.js"></script>
+    <script type="text/javascript" src="./js/imgUpload.js"></script>
+    <script type="text/javascript" src="./js/util.js"></script>
+    <script>
+    </script>
+</head>
+
+<body>
+
+    <!-- 左侧添加 -->
+    <div class="body_first">
+        <div class="body_container">
+            <!-- <div class="logo"><i class="iconfont">&#xe610;</i></div> -->
+            <div class="title">眠眠新闻发布系统</div>
+            <div class="addBtn addImg" data-add="addImg"><i class="iconfont">&#xe60c;</i> 图片 <i class="iconfont add">&#xe60f;</i></div>
+            <div class="addBtn addText" data-add="addText"><i class="iconfont">&#xe606;</i> 文字 <i class="iconfont add">&#xe60f;</i></div>
+            <div class="addBtn addAudio" data-add="addAudio"><i class="iconfont">&#xe60a;</i> 音频 <i class="iconfont add">&#xe60f;</i></div>
+            <div class="addBtn addVideo" data-add="addVideo"><i class="iconfont">&#xe60d;</i> 视频 <i class="iconfont add">&#xe60f;</i></div>
+            <div class="addBtn addBlank" data-add="addBlank"><i class="iconfont">&#xe60e;</i> 间隔 <i class="iconfont add">&#xe60f;</i></div>
+            <div class="publish" onclick="fabu()">发布</div>
+        </div>
+    </div>
+
+    <!-- 右侧预览 -->
+    <div class="body_third">
+        <div class="body_container">
+            <div class="iphone_6">
+                <img src="./img/iphone_6_mockup.png">
+                <div class="preview_box">
+                    <!-- 预览内容 -->
+                    <div class="preview_wrap"></div>
+                    <!-- 预览内容结束 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 中间编辑 -->
+    <div class="body_secound">
+        <div class="body_container">
+            <div class="edit_head">
+                <div class="wx-left">
+                    <div class="wxImg" data-name="wximg" onclick="wxImg(this)">
+                        <!--<form enctype="multipart/form-data" action="http://user.mingjuer.tv/api/upload/image/album" method="post" style="display:none;"><input type="file" onclick="event.stopPropagation()" name="wximg" accept=".jpg,.png,.gif,.jpeg"></form><div>选择分享图片</div><img src=""></div>-->
+                        <form enctype="multipart/form-data" action="http://localhost:8084/vrs/api/uploadimage/album.jsn" method="post" style="display:none;"><input type="file" onclick="event.stopPropagation()" name="image" accept=".jpg,.png,.gif,.jpeg"></form>
+                        <div>选择分享图片</div><img src=""></div>
+                </div>
+                <div class="wx-right">
+                    <div><input class="text fabuName" type="text" placeholder="页面主题" style="width:100%;"></div>
+                    <div><textarea class="text wxText" type="text" placeholder="分享的描述" style="width:100%;"></textarea></div>
+                </div>
+                <div class="backColor" style="margin-top:15px;">背景颜色： <input id="bgColor" type="color" value="#EEEEEE" onchange="changeBC(this)"></div>
+
+            </div>
+            <div class="blank"></div>
+
+            <div class="edit_wrap">
+
+            </div>
+            <div class="edit_foot">点击左侧按钮，添加对应模块～</div>
+        </div>
+    </div>
+
+
+    <!-- 蒙层 -->
+    <div class="body_mask">
+        <div class="body_mask_wrap">
+            <div class="body_mask_box">
+                <div class="pop_delete">
+                    <p>确认要删除此模块么？</p>
+                    <div><span class="no">返回</span><span class="yes">删除</span></div>
+                </div>
+                <div class="choose_type">
+                    <p>选择上传视频的方式：</p>
+                    <div><span class="local">本地视频</span><span class="link">外链视频</span></div>
+                </div>
+                <div class="tips">
+                    <p></p>
+                    <div><span class="back">确定</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 上传本地信息 -->
+    <!-- <div class="upload"> -->
+    <!-- <form id="up-box"> -->
+    <!-- <input type="file" class="img-file"  accept=".jpg,.png,.gif,.jpeg" name="img01"> -->
+    <!-- http://audio.mingjuer.tv/audio/11/20151115/1447536581477.mp3 -->
+
+    <!-- </form> -->
+    <!-- </div> -->
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>眠眠</title>
+    <script type="text/javascript">
+        document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        onresize = function() {
+            document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height:100%;
+        }
+        .box{
+            width: 100%;
+            height: 100%;
+        }
+        img {
+            display: block;
+            width: 100%;
+        }
+        .download2{
+            display: none;
+        }
+        .download{
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="download"></div>
+        <img src="./img/download_02.png" class="download1" alt="">
+        <img src="./img/download_wx_02.png" class="download2" alt="">
+    </div>
+</body>
+<script>
+    console.log(location.href)
+   var box = document.getElementsByClassName("box")[0];
+    box.onclick=function () {
+       window.open("https://itunes.apple.com/us/app/%E7%9C%A0%E7%9C%A0/id1227279287?l=zh&ls=1&mt=8")
+        console.log(location.href)
+        setTimeout(function () {
+            document.getElementsByClassName("download2")[0].style.display='block'
+            document.getElementsByClassName("download1")[0].style.display='none'
+            document.getElementsByTagName("body")[0].style.background="#9d9d9d"
+        },2000)
+    }
+</script>
+</html>

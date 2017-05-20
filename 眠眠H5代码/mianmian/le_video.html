@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=divice-width,initial-scale=1.0,minmum-scale=1.0,maxmum-scale=1.0,user-scalable=no">
+    <title>眠眠</title>
+    <script type="text/javascript">
+        document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        onresize = function () {
+            document.documentElement.style.fontSize = (innerWidth / 375) * 20 + "px";
+        }
+    </script>
+    <script src="./js/jquery-3.0.0.min.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body{
+        background:black;
+        width: 18.75rem;
+        height: 12rem;
+    }
+    #player{
+        width: 100%;
+        height: 12rem;
+    }
+    #box{
+        width: 100%;
+        height:12rem;
+    }
+
+</style>
+
+<body>
+<div id="box">
+<div id="player"></div>
+</div>
+</body>
+<script type="text/javascript" src="./js/vue.js"></script>
+<script type="text/javascript" src="./js/vue-resource.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/vod/bcloud.js"></script>
+<script type="text/javascript">
+    var resid= getValue("res_id")
+    function init_video() {
+        player = new CloudVodPlayer();
+        player.init({
+            uu: "n219pmijzi",
+            vu: vm.user.letv_video_unique,
+            pu: "caea07ae99",
+            autoplay: 0,
+            ark: "106",
+            dfull:0,
+            playsinline: 1,
+            "gpcflag": 1
+        }, "player")
+    }
+    function pauseMedia() {
+        player.sdk.pauseVideo()
+    }
+    function resumeMedia() {
+        player.sdk.resumeVideo()
+    }
+    function resumevideo() {
+        player.sdk.resumeVideo()
+    }
+    function pauseVideo() {
+        player.sdk.pauseVideo()
+    }
+    vm = new Vue({
+        el: "#box",
+        created: function () {
+            this.getData()
+
+        },
+        data: {
+            play_icon: true,
+            user_id: "",
+            res_type: "",
+            res_id: "",
+            aritcle_id: "",
+            user: {
+                age: 26,
+                attention_status: 91,
+                url: "asdfa/asdfasdf/asdfasdf/?id=A15891358342447106",
+                banner: {},
+                create_ts: 1490881721,
+                ext: {},
+                gender: 0.4,
+                mobile: "18311233556",
+                name: "update_name",
+                opens: [],
+                portrait: "",
+                status: 52,
+                user_id: 56942160553
+            },
+            comments: [],
+            related_videos: [],
+            discription: ""
+
+        },
+        methods: {
+            getData: function () {
+                document.cookie = "authorization=NTY5NDIxNjA1NTM7MTQ5MDIwMzM5Ng=="
+                this.$http({
+                    method: "JSONP",
+                    type: "GET",
+                    data: {
+                        res_id: resid,
+                        res_type: 7
+                    },
+                    url: "http://47.93.49.236:8000/api/v1/resource/detail",
+                }).then(function (data) {
+                    console.log(data.data.data)
+                    this.$set('user', data.data.data)
+                    init_video();
+
+                }, function (response) {
+                    console.log('失败')
+                    console.log(response)
+                })
+            }
+        }
+    })
+
+    function getValue(key) {
+        var name = key;
+        var str = window.location.search;
+        if (str.indexOf(name) != -1) {
+            var pos_start = str.indexOf(name) + name.length + 1;
+            var pos_end = str.indexOf("&", pos_start);
+            if (pos_end == -1) {
+                return decodeURIComponent(str.substring(pos_start))
+            } else {
+                return decodeURIComponent(str.substring(pos_start, pos_end))
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: -webkit-linear-gradient(#FF656E, #FE7C75);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#FF656E, #FE7C75);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#FF656E, #FE7C75);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(#FF656E, #FE7C75);
+    /* 标准的语法 */
+}
+
+.box {
+    width: 17.625rem;
+    margin: 0.75rem auto;
+    background: #fff;
+    border-radius: 5px;
+    padding: 1rem 0;
+}
+
+p {
+    color: #fb615e;
+    font-size: 0.6rem;
+    text-indent: 1rem;
+    line-height: 0.9rem;
+}
+
+.br {
+    margin-bottom: 1.125rem;
+}
+
+.banquan {
+    display: block;
+    width: 4.5rem;
+    color: #fbacaf;
+    position: absolute;
+    bottom: 1.3rem;
+    font-size: 0.5rem;
+    left: 50%;
+    margin-left: -2.7rem;
+}
